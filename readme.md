@@ -1,1 +1,1 @@
-# colab scrip to prepare dataset
+collection of scripts to prepare dataset on colab
