@@ -30,17 +30,20 @@ class ProteinDataset(Dataset):
 
         ############ for protein vocab ###########################
         self.vocab_option = args.vocab_option  #       
-        self.AA_basic ='*ARNDCQEGHILKMFPSTWYV' # 21
-        self.AA_ext1  ='*ARNDCQEGHILKMFPSTWYVUO' 
-        self.AA_ext2  ='*ARNDCQEGHILKMFPSTWYVUOXBZJ_'
+        self.DICT_AA_b    = '*ARNDCQEGHILKMFPSTWYV' # 21
+        self.DICT_AA_ext1 = '*ARNDCQEGHILKMFPSTWYVUO' 
+        self.DICT_AA_ext2 = '*ARNDCQEGHILKMFPSTWYVUOXBZJ'        
+        self.DICT_DSSP    = 'LHBEGITS' # for secondary structure 
 
-        self.AAb_to_int = dict((c, i) for i, c in enumerate(self.AA_basic))
-        self.AA1_to_int = dict((c, i) for i, c in enumerate(self.AA_ext1))
-        self.AA2_to_int = dict((c, i) for i, c in enumerate(self.AA_ext2))
+        self.AAb_to_int = dict((c, i) for i, c in enumerate(self.DICT_AA_b))  
+        self.AA1_to_int = dict((c, i) for i, c in enumerate(self.DICT_AA_ext1))
+        self.AA2_to_int = dict((c, i) for i, c in enumerate(self.DICT_AA_ext2))
+        self.DSSP_to_int = dict((c, i) for i, c in enumerate(self.DICT_DSSP))        
 
         self.int_to_AAb = dict((i, c) for i, c in enumerate(self.AA_basic))
-        self.int_to_AA1 = dict((i, c) for i, c in enumerate(self.AA_ext1))
-        self.int_to_AA2 = dict((i, c) for i, c in enumerate(self.AA_ext2))
+        self.int_to_AA1 = dict((i, c) for i, c in enumerate(self.DICT_AA_ext1))
+        self.int_to_AA2 = dict((i, c) for i, c in enumerate(self.DICT_AA_ext2))      
+        self.int_to_DSSP = dict((i, c) for i, c in enumerate(self.DICT_DSSP))
 
 
     def get_offset_disk(self, index ):   
